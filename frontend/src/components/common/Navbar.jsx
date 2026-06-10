@@ -21,13 +21,13 @@ function Navbar() {
 
         <nav className="hidden items-center gap-8 md:flex">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.label}
-              href={link.href}
+              to={{ pathname: '/', hash: link.href }}
               className="text-sm text-[#94a3b8] transition-colors hover:text-white"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -61,14 +61,14 @@ function Navbar() {
           <div className="mx-auto flex max-w-7xl flex-col gap-4">
             <div className="flex flex-col gap-3">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.label}
-                  href={link.href}
+                  to={{ pathname: '/', hash: link.href }}
                   onClick={() => setIsMenuOpen(false)}
                   className="text-sm text-[#94a3b8] transition-colors hover:text-white"
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
             </div>
             <div className="flex flex-col gap-3 pt-2">

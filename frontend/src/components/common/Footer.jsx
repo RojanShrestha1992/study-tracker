@@ -5,7 +5,7 @@ function Footer() {
   return (
     <footer className="border-t border-[#2d2d44] bg-[#1a1a2e] px-6 py-10">
       <div className="mx-auto max-w-7xl">
-        <div className="flex flex-col justify-between gap-8 md:flex-row md:items-start">
+        <div className="flex flex-col justify-between gap-8 md:flex-row-reverse md:items-start">
           <div className="max-w-xs">
             <Link to="/" className="flex items-center gap-2">
               <FiZap className="text-xl text-[#7c3aed]" />
@@ -48,7 +48,7 @@ function Footer() {
         </div>
 
         <div className="mt-8 border-t border-[#2d2d44] pt-6 text-center text-sm text-[#94a3b8]">
-          © 2025 StudyQuest. Built to make studying actually enjoyable.
+          © 2025 StudyMitra. Built to make studying actually enjoyable.
         </div>
       </div>
     </footer>

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 function HowItWorksSection() {
   const steps = [
     {
@@ -61,12 +62,12 @@ function HowItWorksSection() {
 
         <div className="mt-16 text-center">
           <p className="mb-6 text-lg text-[#94a3b8]">Ready to transform your study habits?</p>
-          <a
-            href="#home"
+          <Link
+            to="/register"
             className="mx-auto inline-block rounded-xl bg-gradient-to-r from-[#7c3aed] to-[#06b6d4] px-10 py-4 text-lg font-bold text-white transition-transform hover:scale-105"
           >
             Get Started for Free
-          </a>
+          </Link>
         </div>
       </div>
     </section>
