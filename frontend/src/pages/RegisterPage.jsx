@@ -1,5 +1,6 @@
-import { Link } from 'react-router-dom'
-import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { register } from '../utils/authApi.js'
 import Navbar from '../components/common/Navbar.jsx'
 import Footer from '../components/common/Footer.jsx'
 
@@ -10,11 +11,20 @@ function RegisterPage() {
   const [confirm, setConfirm] = useState('')
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const navigate = useNavigate()
 
-  function handleSubmit(e) {
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      navigate('/dashboard', { replace: true })
+    }
+  }, [navigate])
+
+  async function handleSubmit(e) {
     e.preventDefault()
     setError('')
     setSuccess('')
+
     if (!name || !email || !password || !confirm) {
       setError('Please fill out all fields.')
       return
@@ -23,12 +33,33 @@ function RegisterPage() {
       setError('Passwords do not match.')
       return
     }
-    // Demo behavior: show a success message instead of real registration
-    // setSuccess('Account created (demo). You can now sign in.')
-    // setName('')
-    // setEmail('')
-    // setPassword('')
-    // setConfirm('')
+
+    try {
+      setIsSubmitting(true)
+
+      const result = await register({
+        name,
+        email,
+        password,
+      })
+
+      // Store auth payload from API response for future protected pages.
+      localStorage.setItem('token', result.token)
+      localStorage.setItem('user', JSON.stringify(result.user))
+
+      setSuccess(result.message || 'Account created successfully.')
+      setName('')
+      setEmail('')
+      setPassword('')
+      setConfirm('')
+
+      // Send the new user directly to dashboard after registration.
+      navigate('/dashboard', { replace: true })
+    } catch (apiError) {
+      setError(apiError.message)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -89,9 +120,10 @@ function RegisterPage() {
 
             <button
               type="submit"
-              className="w-full rounded-lg bg-[#7c3aed] px-4 py-2 font-semibold text-white hover:bg-[#6b21c8]"
+              disabled={isSubmitting}
+              className="w-full rounded-lg bg-[#7c3aed] px-4 py-2 font-semibold text-white hover:bg-[#6b21c8] disabled:cursor-not-allowed disabled:opacity-70"
             >
-              Create account
+              {isSubmitting ? 'Creating account...' : 'Create account'}
             </button>
           </form>
 

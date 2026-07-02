@@ -1,5 +1,6 @@
-import { Link } from 'react-router-dom'
-import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { login } from '../utils/authApi.js'
 import Navbar from '../components/common/Navbar.jsx'
 import Footer from '../components/common/Footer.jsx'
 
@@ -8,19 +9,48 @@ function LoginPage() {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const navigate = useNavigate()
 
-  function handleSubmit(e) {
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      navigate('/dashboard', { replace: true })
+    }
+  }, [navigate])
+
+  async function handleSubmit(e) {
     e.preventDefault()    
     setError('')
     setSuccess('')
+
     if (!email || !password) {
       setError('Please enter both email and password.')
       return
     }
-    // Demo behavior: show a success message instead of real auth
-    // setSuccess('Logged in (demo).')
-    // setEmail('')
-    // setPassword('')
+
+    try {
+      setIsSubmitting(true)
+
+      const result = await login({
+        email,
+        password,
+      })
+
+      // Keep auth response in localStorage so later pages can read it.
+      localStorage.setItem('token', result.token)
+      localStorage.setItem('user', JSON.stringify(result.user))
+
+      setSuccess(result.message || 'Login successful.')
+      setEmail('')
+      setPassword('')
+
+      // Send the user to the app area after successful login.
+      navigate('/dashboard', { replace: true })
+    } catch (apiError) {
+      setError(apiError.message)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -59,9 +89,10 @@ function LoginPage() {
 
             <button
               type="submit"
-              className="w-full rounded-lg bg-[#7c3aed] px-4 py-2 font-semibold text-white hover:bg-[#6b21c8]"
+              disabled={isSubmitting}
+              className="w-full rounded-lg bg-[#7c3aed] px-4 py-2 font-semibold text-white hover:bg-[#6b21c8] disabled:cursor-not-allowed disabled:opacity-70"
             >
-              Sign in
+              {isSubmitting ? 'Signing in...' : 'Sign in'}
             </button>
           </form>
 
