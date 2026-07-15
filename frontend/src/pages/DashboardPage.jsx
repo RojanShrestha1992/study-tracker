@@ -65,12 +65,7 @@ function DashboardPage() {
             Logout
           </button>
 
-          <Link
-            to="/"
-            className="rounded-lg border border-[#2d2d44] px-4 py-2 text-sm text-[#cbd5e1] transition-colors hover:bg-[#2d2d44]"
-          >
-            Back to landing page
-          </Link>
+         
         </section>
       </div>
     </main>

@@ -18,6 +18,7 @@ function sendAuthResponse(res, user, statusCode) {
   res.cookie('token', token, cookieOptions)
   res.status(statusCode).json({
     message: statusCode === 201 ? 'Registration successful' : 'Login successful',
+    token: token,
     user: {
       id: user._id,
       name: user.name,
@@ -52,6 +53,10 @@ export async function registerUser(req, res, next) {
     // Basic required-field validation.
     if (!name || !email || !password) {
       return res.status(400).json({ message: 'Name, email, and password are required' })
+    }
+
+    if (password.length < 8) {
+      return res.status(400).json({ message: 'Password must be at least 8 characters long' })
     }
 
     // Normalize email so different letter-casing still maps to one account.

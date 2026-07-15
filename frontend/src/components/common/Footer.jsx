@@ -18,18 +18,15 @@ function Footer() {
             <div>
               <h3 className="mb-3 font-semibold text-white">Product</h3>
               <div className="flex flex-col gap-2 text-sm">
-                <a href="#features" className="text-[#94a3b8] transition-colors hover:text-white">
+                <Link to="/#features" className="text-[#94a3b8] transition-colors hover:text-white">
                   Features
-                </a>
-                <a
-                  href="#how-it-works"
-                  className="text-[#94a3b8] transition-colors hover:text-white"
-                >
+                </Link>
+                <Link to="/#how-it-works" className="text-[#94a3b8] transition-colors hover:text-white">
                   How It Works
-                </a>
-                <a href="#features" className="text-[#94a3b8] transition-colors hover:text-white">
+                </Link>
+                <Link to="/#leaderboard" className="text-[#94a3b8] transition-colors hover:text-white">
                   Leaderboard
-                </a>
+                </Link>
               </div>
             </div>
 

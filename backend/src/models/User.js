@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 import bcrypt from 'bcryptjs'
 
-// User schema for auth. Password is hidden by default in queries.
+// User schema for auth and core gamification data.
 const userSchema = new mongoose.Schema(
   {
     name: {
@@ -19,8 +19,54 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       required: [true, 'Password is required'],
-      minlength: [6, 'Password must be at least 6 characters long'],
+      minlength: [8, 'Password must be at least 8 characters long'],
       select: false,
+    },
+    avatar: {
+      type: String,
+      default: 'avatar1',
+    },
+    totalXP: {
+      type: Number,
+      default: 0,
+    },
+    level: {
+      type: Number,
+      default: 1,
+    },
+    currentStreak: {
+      type: Number,
+      default: 0,
+    },
+    longestStreak: {
+      type: Number,
+      default: 0,
+    },
+    lastStudyDate: {
+      type: Date,
+      default: null,
+    },
+    settings: {
+      workDuration: {
+        type: Number,
+        default: 25,
+      },
+      shortBreak: {
+        type: Number,
+        default: 5,
+      },
+      longBreak: {
+        type: Number,
+        default: 15,
+      },
+      sessionsBeforeLongBreak: {
+        type: Number,
+        default: 4,
+      },
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now,
     },
   },
   {
