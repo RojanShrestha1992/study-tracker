@@ -20,11 +20,11 @@ function Modal({ isOpen, onClose, title, children }) {
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4" onClick={onClose}>
-      <div className="w-full max-w-md rounded-2xl border border-gray-800 bg-gray-900 p-6 shadow-2xl" onClick={(event) => event.stopPropagation()}>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4" onClick={onClose}>
+      <div className="w-full max-w-md rounded-3xl border border-sand bg-surface p-6 shadow-warm-lg" onClick={(event) => event.stopPropagation()}>
         <div className="mb-4 flex items-center justify-between">
-          <h3 className="text-xl font-semibold text-white">{title}</h3>
-          <button type="button" onClick={onClose} className="rounded-full p-2 text-gray-400 hover:bg-gray-800 hover:text-white">
+          <h3 className="text-xl font-semibold text-espresso">{title}</h3>
+          <button type="button" onClick={onClose} className="rounded-full p-2 text-warmgray hover:bg-primary-light hover:text-primary">
             ✕
           </button>
         </div>

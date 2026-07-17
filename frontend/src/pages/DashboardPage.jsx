@@ -26,33 +26,33 @@ function DashboardPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[#0f0f1a] px-6 py-10 text-white">
+    <main className="min-h-screen bg-cream px-6 py-10 text-espresso">
       <div className="mx-auto flex w-full max-w-5xl flex-col gap-6">
-        <section className="rounded-2xl border border-[#2d2d44] bg-[#1a1a2e] p-6">
-          <p className="text-sm text-[#94a3b8]">Welcome back</p>
-          <h1 className="mt-1 text-3xl font-bold text-white">
+        <section className="rounded-3xl border border-sand bg-surface p-6 shadow-warm">
+          <p className="text-sm text-warmgray">Welcome back</p>
+          <h1 className="mt-1 text-3xl font-bold text-espresso">
             {user?.name ? `${user.name}'s Dashboard` : 'Study Dashboard'}
           </h1>
-          <p className="mt-2 text-sm text-[#cbd5e1]">
+          <p className="mt-2 text-sm text-warmgray">
             This is your starter dashboard. Next, you can add streaks, quests, points, and study
             sessions here.
           </p>
         </section>
 
         <section className="grid gap-4 md:grid-cols-3">
-          <article className="rounded-xl border border-[#2d2d44] bg-[#1a1a2e] p-5">
-            <p className="text-xs uppercase tracking-wide text-[#94a3b8]">Current streak</p>
-            <p className="mt-2 text-2xl font-bold">0 days</p>
+          <article className="rounded-2xl border border-sand bg-surface p-5 shadow-warm">
+            <p className="text-xs uppercase tracking-wide text-warmgray">Current streak</p>
+            <p className="mt-2 text-2xl font-bold text-espresso">0 days</p>
           </article>
 
-          <article className="rounded-xl border border-[#2d2d44] bg-[#1a1a2e] p-5">
-            <p className="text-xs uppercase tracking-wide text-[#94a3b8]">XP earned</p>
-            <p className="mt-2 text-2xl font-bold">0 XP</p>
+          <article className="rounded-2xl border border-sand bg-surface p-5 shadow-warm">
+            <p className="text-xs uppercase tracking-wide text-warmgray">XP earned</p>
+            <p className="mt-2 text-2xl font-bold text-espresso">0 XP</p>
           </article>
 
-          <article className="rounded-xl border border-[#2d2d44] bg-[#1a1a2e] p-5">
-            <p className="text-xs uppercase tracking-wide text-[#94a3b8]">Tasks completed</p>
-            <p className="mt-2 text-2xl font-bold">0 tasks</p>
+          <article className="rounded-2xl border border-sand bg-surface p-5 shadow-warm">
+            <p className="text-xs uppercase tracking-wide text-warmgray">Tasks completed</p>
+            <p className="mt-2 text-2xl font-bold text-espresso">0 tasks</p>
           </article>
         </section>
 
@@ -60,7 +60,7 @@ function DashboardPage() {
           <button
             type="button"
             onClick={handleLogout}
-            className="rounded-lg border border-[#7c3aed] px-4 py-2 text-sm font-semibold text-[#7c3aed] transition-colors hover:bg-[#7c3aed] hover:text-white"
+            className="rounded-xl border border-primary/20 bg-primary-light px-4 py-2 text-sm font-semibold text-primary transition-colors hover:bg-primary/20"
           >
             Logout
           </button>

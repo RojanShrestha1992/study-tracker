@@ -1,11 +1,11 @@
 function Toast({ toast, onRemove }) {
-  const base = 'pointer-events-auto rounded-xl border-l-4 bg-gray-900/95 p-4 text-sm text-white shadow-lg backdrop-blur'
+  const base = 'pointer-events-auto rounded-xl border-l-4 bg-surface/95 p-4 text-sm text-espresso shadow-warm backdrop-blur'
 
   const styles = {
-    success: 'border-green-500',
+    success: 'border-accent',
     error: 'border-red-500',
-    info: 'border-blue-500',
-    badge: 'border-purple-500 bg-gradient-to-r from-purple-600 to-blue-500',
+    info: 'border-primary',
+    badge: 'border-primary bg-gradient-badge text-white',
   }
 
   return (
@@ -17,7 +17,7 @@ function Toast({ toast, onRemove }) {
             <span>{toast.message}</span>
           </div>
         </div>
-        <button type="button" onClick={() => onRemove(toast.id)} className="text-white/80 hover:text-white">
+        <button type="button" onClick={() => onRemove(toast.id)} className="text-current/80 hover:text-current">
           ✕
         </button>
       </div>

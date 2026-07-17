@@ -8,12 +8,12 @@ function XPPopup({ data, onClose }) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4">
-      <div className="w-full max-w-sm rounded-3xl bg-gradient-to-br from-purple-600 to-blue-500 p-8 text-center text-white shadow-2xl">
+      <div className="w-full max-w-sm rounded-3xl bg-gradient-badge p-8 text-center text-white shadow-2xl">
         <p className="text-5xl font-bold">+{data.xpEarned} XP</p>
-        {data.bonusXP > 0 && <p className="mt-3 text-sm text-purple-100">Includes +{data.bonusXP} bonus 🎉</p>}
+        {data.bonusXP > 0 && <p className="mt-3 text-sm text-amber-50">Includes +{data.bonusXP} bonus 🎉</p>}
         <p className="mt-4 text-lg">Great work! Keep it up 🔥</p>
         {data.leveledUp && (
-          <div className="mt-4 rounded-2xl bg-yellow-400/20 p-3 text-sm text-yellow-100">
+          <div className="mt-4 rounded-2xl bg-amber-100/20 p-3 text-sm text-amber-50">
             🎉 LEVEL UP! Now Level {data.newLevel} {data.newLevelTitle}
           </div>
         )}

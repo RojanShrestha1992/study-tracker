@@ -2,10 +2,10 @@ function Button({ variant = 'primary', size = 'md', children, onClick, disabled 
   const base = 'rounded-xl font-semibold transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-60'
 
   const variants = {
-    primary: 'bg-gradient-to-r from-purple-600 to-blue-500 text-white hover:brightness-110',
-    secondary: 'border border-gray-700 bg-gray-800 text-gray-100 hover:border-gray-600 hover:bg-gray-700',
-    danger: 'bg-red-600 text-white hover:bg-red-500',
-    ghost: 'bg-transparent text-gray-300 hover:bg-gray-800 hover:text-white',
+    primary: 'bg-gradient-badge text-white hover:brightness-110 shadow-warm',
+    secondary: 'border border-sand bg-surface text-espresso hover:border-primary hover:bg-primary-light',
+    danger: 'bg-red-500 text-white hover:bg-red-400',
+    ghost: 'bg-transparent text-warmgray hover:bg-primary-light hover:text-primary',
   }
 
   const sizes = {

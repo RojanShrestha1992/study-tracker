@@ -55,12 +55,12 @@ function SubjectModal({ isOpen, onClose, subject, onSuccess }) {
     <Modal isOpen={isOpen} onClose={onClose} title={subject ? 'Edit Subject' : 'Add Subject'}>
       <form onSubmit={handleSubmit} className="space-y-5">
         <div>
-          <label className="mb-2 block text-sm text-gray-300">Name</label>
-          <input value={name} onChange={(event) => setName(event.target.value)} className="w-full rounded-xl border border-gray-800 bg-gray-950 px-3 py-2 text-white outline-none" placeholder="Math" />
+          <label className="mb-2 block text-sm text-warmgray">Name</label>
+          <input value={name} onChange={(event) => setName(event.target.value)} className="w-full rounded-xl border border-sand bg-cream px-3 py-2 text-espresso outline-none" placeholder="Math" />
         </div>
 
         <div>
-          <label className="mb-2 block text-sm text-gray-300">Color</label>
+          <label className="mb-2 block text-sm text-warmgray">Color</label>
           <div className="flex flex-wrap gap-2">
             {COLORS.map((item) => (
               <button key={item} type="button" onClick={() => setColor(item)} className={`h-10 w-10 rounded-full border-2 ${color === item ? 'ring-2 ring-white' : 'border-transparent'}`} style={{ backgroundColor: item }} />
@@ -69,10 +69,10 @@ function SubjectModal({ isOpen, onClose, subject, onSuccess }) {
         </div>
 
         <div>
-          <label className="mb-2 block text-sm text-gray-300">Icon</label>
+          <label className="mb-2 block text-sm text-warmgray">Icon</label>
           <div className="grid grid-cols-6 gap-2">
             {ICONS.map((item) => (
-              <button key={item} type="button" onClick={() => setIcon(item)} className={`rounded-xl p-2 text-xl ${icon === item ? 'bg-gray-700' : 'bg-gray-950'}`}>
+              <button key={item} type="button" onClick={() => setIcon(item)} className={`rounded-xl p-2 text-xl ${icon === item ? 'bg-primary-light' : 'bg-cream'}`}>
                 {item}
               </button>
             ))}

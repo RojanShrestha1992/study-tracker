@@ -54,50 +54,50 @@ function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0f0f1a] text-white">
+    <div className="min-h-screen bg-cream text-espresso">
       <Navbar />
       <main className="flex items-center justify-center px-6 pt-20 pb-12">
-        <div className="w-full max-w-md rounded-2xl border border-[#2d2d44] bg-[#1a1a2e] p-8">
-          <h2 className="mb-1 text-2xl font-bold">Sign in</h2>
-          <p className="mb-6 text-sm text-[#94a3b8]">Simple login form — beginner friendly</p>
+        <div className="w-full max-w-md rounded-3xl border border-sand bg-surface p-8 shadow-warm-lg">
+          <h2 className="mb-1 text-2xl font-bold text-espresso">Sign in</h2>
+          <p className="mb-6 text-sm text-warmgray">Simple login form — beginner friendly</p>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="mb-1 block text-sm text-[#cbd5e1]">Email</label>
+              <label className="mb-1 block text-sm text-warmgray">Email</label>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full rounded-lg border border-[#2d2d44] bg-[#0f1724] px-3 py-2 text-white focus:outline-none"
+                className="w-full rounded-xl border border-sand bg-cream px-3 py-2 text-espresso focus:outline-none focus:ring-2 focus:ring-primary/20"
                 placeholder="you@example.com"
               />
             </div>
 
             <div>
-              <label className="mb-1 block text-sm text-[#cbd5e1]">Password</label>
+              <label className="mb-1 block text-sm text-warmgray">Password</label>
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full rounded-lg border border-[#2d2d44] bg-[#0f1724] px-3 py-2 text-white focus:outline-none"
+                className="w-full rounded-xl border border-sand bg-cream px-3 py-2 text-espresso focus:outline-none focus:ring-2 focus:ring-primary/20"
                 placeholder="Your password"
               />
             </div>
 
-            {error && <p className="text-sm text-red-400">{error}</p>}
-            {success && <p className="text-sm text-green-400">{success}</p>}
+            {error && <p className="text-sm text-red-500">{error}</p>}
+            {success && <p className="text-sm text-accent">{success}</p>}
 
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full rounded-lg bg-[#7c3aed] px-4 py-2 font-semibold text-white hover:bg-[#6b21c8] disabled:cursor-not-allowed disabled:opacity-70"
+              className="w-full rounded-xl bg-primary px-4 py-2 font-semibold text-white shadow-warm transition-colors hover:bg-primary-hover disabled:cursor-not-allowed disabled:opacity-70"
             >
               {isSubmitting ? 'Signing in...' : 'Sign in'}
             </button>
           </form>
 
-          <div className="mt-6 flex items-center justify-between text-sm text-[#94a3b8]">
-            <Link to="/register" className="text-[#7c3aed] hover:underline">
+          <div className="mt-6 flex items-center justify-between text-sm text-warmgray">
+            <Link to="/register" className="text-primary hover:underline">
               Create account
             </Link>
             <Link to="/" className="hover:underline">

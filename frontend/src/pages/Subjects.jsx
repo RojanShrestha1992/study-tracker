@@ -40,10 +40,10 @@ function Subjects() {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col gap-4 rounded-2xl border border-gray-800 bg-gray-900/70 p-6 md:flex-row md:items-center md:justify-between">
+      <div className="flex flex-col gap-4 rounded-3xl border border-sand bg-surface p-6 shadow-warm md:flex-row md:items-center md:justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-white">📚 My Subjects</h1>
-          <p className="mt-1 text-gray-400">Organize your learning by topic and stay focused.</p>
+          <h1 className="text-3xl font-bold text-espresso">📚 My Subjects</h1>
+          <p className="mt-1 text-warmgray">Organize your learning by topic and stay focused.</p>
         </div>
         <Button onClick={() => { setEditingSubject(null); setIsModalOpen(true) }}>
           + Add Subject
@@ -51,12 +51,12 @@ function Subjects() {
       </div>
 
       {loading ? (
-        <div className="rounded-2xl border border-gray-800 bg-gray-900/70 p-10 text-center text-gray-400">Loading subjects...</div>
+        <div className="rounded-3xl border border-sand bg-surface p-10 text-center text-warmgray shadow-warm">Loading subjects...</div>
       ) : subjects.length === 0 ? (
-        <div className="rounded-2xl border border-gray-800 bg-gray-900/70 p-10 text-center">
+        <div className="rounded-3xl border border-sand bg-surface p-10 text-center shadow-warm">
           <div className="mb-4 text-6xl">📚</div>
-          <h2 className="text-xl font-semibold text-white">No subjects yet.</h2>
-          <p className="mt-2 text-gray-400">Add your first one to start tracking your study plan.</p>
+          <h2 className="text-xl font-semibold text-espresso">No subjects yet.</h2>
+          <p className="mt-2 text-warmgray">Add your first one to start tracking your study plan.</p>
           <div className="mt-6 flex justify-center">
             <Button onClick={() => { setEditingSubject(null); setIsModalOpen(true) }}>Add Subject</Button>
           </div>

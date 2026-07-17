@@ -5,9 +5,9 @@ function CircularTimer({ timeLeft, totalTime, mode }) {
   const offset = circumference - progress
 
   const colorMap = {
-    focus: '#8B5CF6',
-    shortBreak: '#10B981',
-    longBreak: '#3B82F6',
+    focus: '#D97706',
+    shortBreak: '#65A30D',
+    longBreak: '#C2410C',
   }
 
   const formatTime = (value) => {
@@ -19,7 +19,7 @@ function CircularTimer({ timeLeft, totalTime, mode }) {
   return (
     <div className="flex items-center justify-center">
       <svg width="280" height="280" viewBox="0 0 280 280" className="drop-shadow-2xl">
-        <circle cx="140" cy="140" r={radius} stroke="rgba(255,255,255,0.12)" strokeWidth="12" fill="none" />
+        <circle cx="140" cy="140" r={radius} stroke="rgba(140, 90, 40, 0.14)" strokeWidth="12" fill="none" />
         <circle
           cx="140"
           cy="140"
@@ -35,8 +35,8 @@ function CircularTimer({ timeLeft, totalTime, mode }) {
         />
       </svg>
       <div className="absolute text-center">
-        <p className="text-6xl font-bold text-white">{formatTime(timeLeft)}</p>
-        <p className="mt-3 text-sm uppercase tracking-[0.25em] text-gray-400">{mode === 'focus' ? 'Focus' : mode === 'shortBreak' ? 'Short break' : 'Long break'}</p>
+        <p className="text-6xl font-bold text-espresso">{formatTime(timeLeft)}</p>
+        <p className="mt-3 text-sm uppercase tracking-[0.25em] text-warmgray">{mode === 'focus' ? 'Focus' : mode === 'shortBreak' ? 'Short break' : 'Long break'}</p>
       </div>
     </div>
   )

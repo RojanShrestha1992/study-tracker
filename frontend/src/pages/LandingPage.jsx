@@ -26,7 +26,7 @@ function LandingPage() {
   }, [location])
 
   return (
-    <div className="bg-[#0f0f1a] text-white">
+    <div className="bg-cream text-espresso">
       <Navbar />
       <main>
         <HeroSection />

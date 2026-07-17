@@ -3,20 +3,20 @@ import { Link } from 'react-router-dom'
 
 function Footer() {
   return (
-    <footer className="border-t border-[#2d2d44] bg-[#1a1a2e] px-6 py-10">
+    <footer className="border-t border-sand bg-surface px-6 py-10">
       <div className="mx-auto max-w-7xl">
         <div className="flex flex-col justify-between gap-8 md:flex-row-reverse md:items-start">
           <div className="max-w-xs">
             <Link to="/" className="flex items-center gap-2">
-              <FiZap className="text-xl text-[#7c3aed]" />
-              <span className="text-xl font-bold text-white">StudyMitra</span>
+              <FiZap className="text-xl text-primary" />
+              <span className="text-xl font-bold text-espresso">StudyMitra</span>
             </Link>
-            <p className="mt-2 text-sm text-[#94a3b8]">Level up your learning journey.</p>
+            <p className="mt-2 text-sm text-warmgray">Level up your learning journey.</p>
           </div>
 
           <div className="flex flex-col gap-8 sm:flex-row sm:gap-16">
             <div>
-              <h3 className="mb-3 font-semibold text-white">Product</h3>
+              <h3 className="mb-3 font-semibold text-espresso">Product</h3>
               <div className="flex flex-col gap-2 text-sm">
                 <Link to="/#features" className="text-[#94a3b8] transition-colors hover:text-white">
                   Features
@@ -31,12 +31,12 @@ function Footer() {
             </div>
 
             <div>
-              <h3 className="mb-3 font-semibold text-white">Account</h3>
+              <h3 className="mb-3 font-semibold text-espresso">Account</h3>
               <div className="flex flex-col gap-2 text-sm">
-                <Link to="/login" className="text-[#94a3b8] transition-colors hover:text-white">
+                <Link to="/login" className="text-warmgray transition-colors hover:text-primary">
                   Login
                 </Link>
-                <Link to="/register" className="text-[#94a3b8] transition-colors hover:text-white">
+                <Link to="/register" className="text-warmgray transition-colors hover:text-primary">
                   Register
                 </Link>
               </div>
@@ -44,7 +44,7 @@ function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 border-t border-[#2d2d44] pt-6 text-center text-sm text-[#94a3b8]">
+        <div className="mt-8 border-t border-sand pt-6 text-center text-sm text-warmgray">
           © 2025 StudyMitra. Built to make studying actually enjoyable.
         </div>
       </div>

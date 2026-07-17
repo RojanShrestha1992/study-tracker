@@ -14,17 +14,17 @@ function DashboardLayout() {
 
   if (loading) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-[#0a0a0f] text-white">
+      <div className="flex min-h-screen items-center justify-center bg-cream text-espresso">
         <div className="text-center">
-          <div className="mx-auto mb-4 h-10 w-10 animate-spin rounded-full border-4 border-purple-500 border-t-transparent" />
-          <p className="text-gray-400">Loading your workspace...</p>
+          <div className="mx-auto mb-4 h-10 w-10 animate-spin rounded-full border-4 border-primary border-t-transparent" />
+          <p className="text-warmgray">Loading your workspace...</p>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] text-white">
+    <div className="min-h-screen bg-cream text-espresso">
       <div className="flex">
         <Sidebar />
         <main className="flex-1 p-4 md:p-8">

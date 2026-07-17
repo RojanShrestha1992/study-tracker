@@ -127,31 +127,31 @@ function PomodoroTimer() {
 
   return (
     <div className="space-y-6">
-      <div className="rounded-2xl border border-gray-800 bg-gray-900/70 p-6">
+      <div className="rounded-2xl border border-sand bg-surface  p-6">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-white">⏱️ Pomodoro Timer</h1>
-            <p className="mt-1 text-gray-400">Stay in flow and track your progress.</p>
+            <h1 className="text-3xl font-bold text-espresso">⏱️ Pomodoro Timer</h1>
+            <p className="mt-1 text-warmgray">Stay in flow and track your progress.</p>
           </div>
-          <div className={`rounded-full px-3 py-1 text-sm font-medium ${mode === 'focus' ? 'bg-purple-500/20 text-purple-400' : mode === 'shortBreak' ? 'bg-green-500/20 text-green-400' : 'bg-blue-500/20 text-blue-400'}`}>
+          <div className={`rounded-full px-3 py-1 text-sm font-medium ${mode === 'focus' ? 'bg-primary-light text-primary' : mode === 'shortBreak' ? 'bg-accent/10 text-accent' : 'bg-sand text-espresso'}`}>
             {mode === 'focus' ? 'Focus' : mode === 'shortBreak' ? 'Short Break' : 'Long Break'}
           </div>
         </div>
       </div>
 
       {!loading && subjects.length === 0 ? (
-        <div className="rounded-2xl border border-gray-800 bg-gray-900/70 p-10 text-center">
-          <p className="text-gray-400">Add a subject first to begin tracking your sessions.</p>
+        <div className="rounded-3xl border border-sand bg-surface p-10 text-center shadow-warm">
+          <p className="text-warmgray">Add a subject first to begin tracking your sessions.</p>
           <Button className="mt-4" onClick={() => navigate('/subjects')}>Go to Subjects</Button>
         </div>
       ) : (
         <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="rounded-2xl border border-gray-800 bg-gray-900/70 p-6">
+          <div className="rounded-3xl border border-sand bg-surface p-6 shadow-warm">
             <div className="relative flex items-center justify-center">
               <CircularTimer timeLeft={timeLeft} totalTime={totalTime} mode={mode} />
             </div>
             <div className="mt-6 text-center">
-              <p className="text-sm text-gray-400">Session {sessionCount} of 4</p>
+              <p className="text-sm text-warmgray">Session {sessionCount} of 4</p>
               <div className="mt-4 flex flex-wrap justify-center gap-3">
                 {!isRunning ? (
                   <Button onClick={handleStart} disabled={!selectedSubjectId}>Start</Button>
@@ -164,10 +164,10 @@ function PomodoroTimer() {
             </div>
           </div>
 
-          <div className="space-y-4 rounded-2xl border border-gray-800 bg-gray-900/70 p-6">
+          <div className="space-y-4 rounded-3xl border border-sand bg-surface p-6 shadow-warm">
             <div>
-              <label className="mb-2 block text-sm text-gray-300">Subject</label>
-              <select value={selectedSubjectId || ''} onChange={(event) => setSubject(event.target.value)} className="w-full rounded-xl border border-gray-800 bg-gray-950 px-3 py-2 text-white">
+              <label className="mb-2 block text-sm text-warmgray">Subject</label>
+              <select value={selectedSubjectId || ''} onChange={(event) => setSubject(event.target.value)} className="w-full rounded-xl border border-sand bg-cream px-3 py-2 text-espresso">
                 <option value="">Select a subject</option>
                 {subjects.map((subject) => (
                   <option key={subject._id} value={subject._id}>{subject.name}</option>
@@ -175,8 +175,8 @@ function PomodoroTimer() {
               </select>
             </div>
             <div>
-              <label className="mb-2 block text-sm text-gray-300">Task</label>
-              <select value={selectedTaskId || ''} onChange={(event) => setTask(event.target.value)} className="w-full rounded-xl border border-gray-800 bg-gray-950 px-3 py-2 text-white">
+              <label className="mb-2 block text-sm text-warmgray">Task</label>
+              <select value={selectedTaskId || ''} onChange={(event) => setTask(event.target.value)} className="w-full rounded-xl border border-sand bg-cream px-3 py-2 text-espresso">
                 <option value="">No task</option>
                 {tasks.map((task) => (
                   <option key={task._id} value={task._id}>{task.title}</option>
