@@ -1,0 +1,31 @@
+import Button from '../ui/Button.jsx'
+
+function SubjectCard({ subject, onEdit, onDelete }) {
+  const handleDelete = () => {
+    if (window.confirm(`Delete ${subject.name}? This will also delete related sessions and tasks.`)) {
+      onDelete(subject._id)
+    }
+  }
+
+  return (
+    <div className="rounded-2xl border border-gray-800 bg-gray-900 p-6 shadow-sm" style={{ borderLeft: `4px solid ${subject.color}` }}>
+      <div className="mb-4 flex items-start justify-between gap-3">
+        <div className="text-4xl">{subject.icon}</div>
+        <div className="text-right text-sm text-gray-400">
+          <p>{subject.totalTimeStudied || 0} min</p>
+        </div>
+      </div>
+      <h3 className="text-xl font-semibold text-white">{subject.name}</h3>
+      <div className="mt-6 flex gap-2">
+        <Button variant="ghost" size="sm" onClick={() => onEdit(subject)} className="flex-1 justify-center">
+          Edit
+        </Button>
+        <Button variant="danger" size="sm" onClick={handleDelete} className="flex-1 justify-center">
+          Delete
+        </Button>
+      </div>
+    </div>
+  )
+}
+
+export default SubjectCard

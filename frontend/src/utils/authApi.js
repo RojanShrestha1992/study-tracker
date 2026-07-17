@@ -11,6 +11,7 @@ function buildUrl(path) {
 async function requestAuth(path, body) {
   const response = await fetch(buildUrl(path), {
     method: 'POST',
+    credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
     },
