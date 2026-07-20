@@ -24,7 +24,7 @@ function Navbar() {
             <Link
               key={link.label}
               to={{ pathname: '/', hash: link.href }}
-              className="text-sm text-[#94a3b8] transition-colors hover:text-white"
+              className="text-sm text-[#2a394e] transition-colors hover:text-black"
             >
               {link.label}
             </Link>

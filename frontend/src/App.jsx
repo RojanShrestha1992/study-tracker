@@ -6,6 +6,8 @@ import DashboardLayout from './components/layout/DashboardLayout.jsx'
 import PlaceholderPage from './components/PlaceholderPage.jsx'
 import Subjects from './pages/Subjects.jsx'
 import PomodoroTimer from './pages/PomodoroTimer.jsx'
+import Dashboard from './pages/Dashboard.jsx'
+import Tasks from './pages/Tasks.jsx'
 
 function isAuthenticated() {
   return Boolean(localStorage.getItem('token'))
@@ -35,9 +37,9 @@ function App() {
             </ProtectedRoute>
           }
         >
-          <Route path="dashboard" element={<PlaceholderPage title="Dashboard" icon="📊" />} />
+          <Route path="dashboard" element={<Dashboard />} />
           <Route path="timer" element={<PomodoroTimer />} />
-          <Route path="tasks" element={<PlaceholderPage title="Tasks" icon="✅" />} />
+          <Route path="tasks" element={<Tasks />} />
           <Route path="subjects" element={<Subjects />} />
           <Route path="achievements" element={<PlaceholderPage title="Achievements" icon="🏆" />} />
           <Route path="leaderboard" element={<PlaceholderPage title="Leaderboard" icon="👑" />} />
@@ -52,3 +54,4 @@ function App() {
 }
 
 export default App
+

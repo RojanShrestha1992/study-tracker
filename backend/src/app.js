@@ -9,6 +9,7 @@ import taskRoutes from './routes/taskRoutes.js'
 import sessionRoutes from './routes/sessionRoutes.js'
 import badgeRoutes from './routes/badgeRoutes.js'
 import leaderboardRoutes from './routes/leaderboardRoutes.js'
+import dashboardRoutes from './routes/dashboardRoutes.js'
 import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 
 const app = express()
@@ -42,6 +43,7 @@ app.use('/api/tasks', taskRoutes)
 app.use('/api/sessions', sessionRoutes)
 app.use('/api/badges', badgeRoutes)
 app.use('/api/leaderboard', leaderboardRoutes)
+app.use('/api/dashboard', dashboardRoutes)
 
 // If no route matched, create a 404 error.
 app.use(notFound)
@@ -50,3 +52,4 @@ app.use(notFound)
 app.use(errorHandler)
 
 export default app
+
