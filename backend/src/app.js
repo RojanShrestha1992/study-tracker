@@ -31,6 +31,11 @@ app.use(cookieParser())
 app.use(express.json())
 
 // Simple health check endpoint for quick server status testing.
+app.get('/', (_req, res) => {
+  res.json({ message: 'StudyMitra API is running' })
+})
+
+// Simple health check endpoint for quick server status testing.
 app.get('/api/health', (_req, res) => {
   res.json({ message: 'API is healthy' })
 })
