@@ -68,7 +68,7 @@ function RegisterPage() {
       <main className="flex items-center justify-center px-6 pt-20 pb-12">
         <div className="w-full max-w-md rounded-3xl border border-sand bg-surface p-8 shadow-warm-lg">
           <h2 className="mb-1 text-2xl font-bold text-espresso">Create account</h2>
-          <p className="mb-6 text-sm text-warmgray">Quick, simple registration for beginners</p>
+          <p className="mb-6 text-sm text-warmgray">Ready to enjoy your study session.</p>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>

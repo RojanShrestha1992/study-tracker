@@ -22,7 +22,7 @@ function WeeklyChart({ data }) {
     return (
       <EmptyState
         icon="📈"
-        title="No study time this week yet — let's fix that! 💪"
+        title="No study time this week yet, let's fix that! 💪"
         description="Start a Pomodoro and watch your chart light up."
       />
     )

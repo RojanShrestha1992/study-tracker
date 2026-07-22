@@ -45,7 +45,13 @@ export async function getMyBadges(req, res, next) {
       }
 
       return {
-        badge,
+        badge: {
+          key: badge.key,
+          name: badge.name,
+          description: badge.description,
+          icon: badge.icon,
+          category: badge.category,
+        },
         unlocked: unlockedKeys.has(badge.key),
         unlockedAt: unlockedEntries.find((entry) => entry.badgeKey === badge.key)?.unlockedAt || null,
         progress: {
@@ -55,7 +61,12 @@ export async function getMyBadges(req, res, next) {
       }
     })
 
-    res.json({ badges: payload })
+    res.json({
+      success: true,
+      totalBadges: badges.length,
+      unlockedCount: unlockedEntries.length,
+      badges: payload,
+    })
   } catch (error) {
     next(error)
   }

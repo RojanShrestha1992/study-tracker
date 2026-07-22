@@ -4,6 +4,8 @@ import LoginPage from './pages/LoginPage.jsx'
 import RegisterPage from './pages/RegisterPage.jsx'
 import DashboardLayout from './components/layout/DashboardLayout.jsx'
 import PlaceholderPage from './components/PlaceholderPage.jsx'
+import Achievements from './pages/Achievements.jsx'
+import Leaderboard from './pages/Leaderboard.jsx'
 import Subjects from './pages/Subjects.jsx'
 import PomodoroTimer from './pages/PomodoroTimer.jsx'
 import Dashboard from './pages/Dashboard.jsx'
@@ -41,8 +43,8 @@ function App() {
           <Route path="timer" element={<PomodoroTimer />} />
           <Route path="tasks" element={<Tasks />} />
           <Route path="subjects" element={<Subjects />} />
-          <Route path="achievements" element={<PlaceholderPage title="Achievements" icon="🏆" />} />
-          <Route path="leaderboard" element={<PlaceholderPage title="Leaderboard" icon="👑" />} />
+          <Route path="achievements" element={<Achievements />} />
+          <Route path="leaderboard" element={<Leaderboard />} />
           <Route path="profile" element={<PlaceholderPage title="Profile" icon="👤" />} />
           <Route path="settings" element={<PlaceholderPage title="Settings" icon="⚙️" />} />
         </Route>

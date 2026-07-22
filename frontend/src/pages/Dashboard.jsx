@@ -22,23 +22,32 @@ function Dashboard() {
   const greeting = useMemo(() => getGreeting(), [])
   const user = useUserStore((state) => state.user)
 
-  const loadDashboard = async () => {
-    try {
-      setLoading(true)
-      const { data } = await api.get('/api/dashboard')
-      setDashboard(data?.data || null)
-    } catch (error) {
-      addToast(error.response?.data?.message || 'Unable to load dashboard', 'error')
-    } finally {
-      setLoading(false)
-    }
-  }
-
   useEffect(() => {
-    (async () => {
-      await loadDashboard()
-    })()
-  }, [])
+    let active = true
+
+    async function loadDashboard() {
+      try {
+        setLoading(true)
+        const { data } = await api.get('/api/dashboard')
+
+        if (active) {
+          setDashboard(data?.data || null)
+        }
+      } catch (error) {
+        addToast(error.response?.data?.message || 'Unable to load dashboard', 'error')
+      } finally {
+        if (active) {
+          setLoading(false)
+        }
+      }
+    }
+
+    loadDashboard()
+
+    return () => {
+      active = false
+    }
+  }, [addToast])
 
   const levelInfo = user?.levelInfo || {
     level: 1,
@@ -51,17 +60,28 @@ function Dashboard() {
 
   const todaySessionsCount = dashboard?.todaySessionsCount || 0
   const todayStudyMinutes = dashboard?.todayStudyMinutes || 0
+  const dashboardUser = dashboard?.user || {}
 
   const weeklyStudyData = dashboard?.weeklyStudyData || []
   const recentBadges = dashboard?.recentBadges || []
   const todayTasks = dashboard?.todayTasks || []
   const recentSessions = dashboard?.recentSessions || []
+  const totalXP = Number(dashboardUser.totalXP ?? user?.totalXP ?? 0)
+
+  const refreshDashboard = async () => {
+    try {
+      const { data } = await api.get('/api/dashboard')
+      setDashboard(data?.data || null)
+    } catch (error) {
+      addToast(error.response?.data?.message || 'Unable to load dashboard', 'error')
+    }
+  }
 
   const handleQuickComplete = async (taskId) => {
     try {
       await api.put(`/api/tasks/${taskId}/complete`)
       await fetchUser()
-      await loadDashboard()
+      await refreshDashboard()
     } catch (error) {
       addToast(error.response?.data?.message || 'Unable to complete task', 'error')
     }
@@ -123,7 +143,7 @@ function Dashboard() {
 
             <StatCard
               label="TOTAL XP"
-              value={`${Number(user?.totalXP || 0).toLocaleString()}`}
+              value={totalXP.toLocaleString()}
               icon="⚡"
               accentColor="text-game-xp"
               subtitle="All-time earnings"

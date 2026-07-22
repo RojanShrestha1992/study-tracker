@@ -4,7 +4,7 @@ import { requireAuth } from '../middleware/authMiddleware.js'
 
 const router = Router()
 
-router.get('/', getLeaderboard)
+router.get('/', requireAuth, getLeaderboard)
 router.get('/me/rank', requireAuth, getMyRank)
 
 export default router

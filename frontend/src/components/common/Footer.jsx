@@ -9,7 +9,7 @@ function Footer() {
           <div className="max-w-xs">
             <Link to="/" className="flex items-center gap-2">
               <FiZap className="text-xl text-primary" />
-              <span className="text-xl font-bold text-espresso">StudyMitra</span>
+              <span className="slackey-regular text-xl text-espresso">StudyMitra</span>
             </Link>
             <p className="mt-2 text-sm text-warmgray">Level up your learning journey.</p>
           </div>
@@ -18,15 +18,13 @@ function Footer() {
             <div>
               <h3 className="mb-3 font-semibold text-espresso">Product</h3>
               <div className="flex flex-col gap-2 text-sm">
-                <Link to="/#features" className="text-[#94a3b8] transition-colors hover:text-white">
+                <Link to="/#features" className="text-black transition-colors hover:text-gray-800">
                   Features
                 </Link>
-                <Link to="/#how-it-works" className="text-[#94a3b8] transition-colors hover:text-white">
+                <Link to="/#how-it-works" className="text-black transition-colors hover:text-gray-800">
                   How It Works
                 </Link>
-                <Link to="/#leaderboard" className="text-[#94a3b8] transition-colors hover:text-white">
-                  Leaderboard
-                </Link>
+                
               </div>
             </div>
 

@@ -1,3 +1,4 @@
+import User from '../models/User.js'
 import StudySession from '../models/StudySession.js'
 import Task from '../models/Task.js'
 import Badge from '../models/Badge.js'
@@ -35,7 +36,11 @@ export async function getDashboard(req, res, next) {
     const sevenDaysAgoStart = new Date(todayStart)
     sevenDaysAgoStart.setUTCDate(sevenDaysAgoStart.getUTCDate() - 6)
 
-    const [todaySessions, recentSessions, pendingTasks, recentUnlockedSafe] = await Promise.all([
+    const [user, todaySessions, recentSessions, pendingTasks, recentUnlockedSafe] = await Promise.all([
+      User.findById(userId)
+        .select('name totalXP currentStreak longestStreak level avatar')
+        .lean(),
+
       StudySession.find({
         userId,
         completedAt: { $gte: todayStart, $lt: tomorrowStart },
@@ -142,6 +147,7 @@ export async function getDashboard(req, res, next) {
     res.json({
       success: true,
       data: {
+        user,
         todaySessionsCount,
         todayStudyMinutes,
         weeklyStudyData,

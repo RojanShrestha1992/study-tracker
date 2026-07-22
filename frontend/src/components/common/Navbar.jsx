@@ -16,7 +16,7 @@ function Navbar() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <Link to="/" className="flex items-center gap-2">
           <FiZap className="text-xl text-primary" />
-          <span className="text-xl font-bold text-espresso">StudyMitra</span>
+          <span className="slackey-regular text-2xl text-espresso">StudyMitra</span>
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
