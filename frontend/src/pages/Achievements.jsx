@@ -4,6 +4,7 @@ import useToastStore from '../stores/toastStore.js'
 import EmptyState from '../components/ui/EmptyState.jsx'
 import BadgeCard from '../components/achievements/BadgeCard.jsx'
 import BadgeDetailModal from '../components/achievements/BadgeDetailModal.jsx'
+import { SkeletonGroup } from '../components/ui/SkeletonLoader.jsx'
 
 const CATEGORY_ORDER = [
   { key: 'streak', label: '🔥 Streak Badges' },
@@ -120,8 +121,14 @@ function Achievements() {
       </div>
 
       {loading ? (
-        <div className="rounded-3xl border border-sand bg-surface p-10 text-center text-warmgray shadow-warm">
-          Loading achievements...
+        <div className="space-y-6">
+          <SkeletonGroup count={1} variant="card" className="h-24 rounded-3xl" />
+          <div className="grid grid-cols-3 gap-4">
+            <SkeletonGroup count={3} variant="stat" />
+          </div>
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+            <SkeletonGroup count={12} variant="card" className="h-40" />
+          </div>
         </div>
       ) : groupedBadges.length === 0 ? (
         <EmptyState

@@ -1,12 +1,6 @@
 import Button from '../ui/Button.jsx'
 
 function SubjectCard({ subject, onEdit, onDelete }) {
-  const handleDelete = () => {
-    if (window.confirm(`Delete ${subject.name}? This will also delete related sessions and tasks.`)) {
-      onDelete(subject._id)
-    }
-  }
-
   return (
     <div className="rounded-3xl border border-sand bg-surface p-6 shadow-warm" style={{ borderLeft: `4px solid ${subject.color}` }}>
       <div className="mb-4 flex items-start justify-between gap-3">
@@ -20,7 +14,7 @@ function SubjectCard({ subject, onEdit, onDelete }) {
         <Button variant="ghost" size="sm" onClick={() => onEdit(subject)} className="flex-1 justify-center">
           Edit
         </Button>
-        <Button variant="danger" size="sm" onClick={handleDelete} className="flex-1 justify-center">
+        <Button variant="danger" size="sm" onClick={() => onDelete(subject._id)} className="flex-1 justify-center">
           Delete
         </Button>
       </div>

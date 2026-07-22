@@ -10,6 +10,7 @@ import RecentBadgesPanel from '../components/dashboard/RecentBadgesPanel.jsx'
 import TodayTasksList from '../components/dashboard/TodayTasksList.jsx'
 import RecentSessionsList from '../components/dashboard/RecentSessionsList.jsx'
 import Button from '../components/ui/Button.jsx'
+import { SkeletonGroup } from '../components/ui/SkeletonLoader.jsx'
 
 function Dashboard() {
   const navigate = useNavigate()
@@ -109,7 +110,25 @@ function Dashboard() {
       </div>
 
       {loading || !dashboard ? (
-        <div className="text-warmgray">Loading...</div>
+        <div className="space-y-6">
+          <div className="rounded-3xl border border-sand bg-surface p-8 shadow-warm">
+            <SkeletonGroup count={1} variant="card" className="h-20" />
+          </div>
+
+          <section className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            <SkeletonGroup count={4} variant="stat" />
+          </section>
+
+          <section className="grid gap-4 lg:grid-cols-[2fr_1fr]">
+            <div className="lg:col-span-2">
+              <SkeletonGroup count={1} variant="card" className="h-72" />
+            </div>
+          </section>
+
+          <section className="grid gap-4 lg:grid-cols-2">
+            <SkeletonGroup count={2} variant="card" className="h-72" />
+          </section>
+        </div>
       ) : (
         <>
           <section className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">

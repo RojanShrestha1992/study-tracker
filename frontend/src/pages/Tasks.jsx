@@ -6,6 +6,8 @@ import EmptyState from '../components/ui/EmptyState.jsx'
 import TaskCard from '../components/tasks/TaskCard.jsx'
 import AddTaskModal from '../components/tasks/AddTaskModal.jsx'
 import Button from '../components/ui/Button.jsx'
+import ConfirmDialog from '../components/ui/ConfirmDialog.jsx'
+import { SkeletonGroup } from '../components/ui/SkeletonLoader.jsx'
 
 function Tasks() {
   const addToast = useToastStore((state) => state.addToast)
@@ -15,6 +17,7 @@ function Tasks() {
   const [filter, setFilter] = useState('all')
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [loading, setLoading] = useState(true)
+  const [taskToDelete, setTaskToDelete] = useState(null)
 
   const fetchTasks = async () => {
     try {
@@ -76,12 +79,10 @@ function Tasks() {
   }
 
   const handleDelete = async (taskId) => {
-    const ok = window.confirm('Delete this task?')
-    if (!ok) return
-
     try {
       await api.delete(`/api/tasks/${taskId}`)
       addToast('Task deleted', 'info')
+      setTaskToDelete(null)
       await fetchTasks()
     } catch (error) {
       addToast(error.response?.data?.message || 'Unable to delete task', 'error')
@@ -125,7 +126,9 @@ function Tasks() {
       </div>
 
       {loading ? (
-        <div className="rounded-3xl border border-sand bg-surface p-10 text-center text-warmgray shadow-warm">Loading tasks...</div>
+        <div className="space-y-3 rounded-3xl border border-sand bg-surface p-6 shadow-warm">
+          <SkeletonGroup count={5} variant="list-item" />
+        </div>
       ) : !hasAny ? (
         <EmptyState
           icon="✅"
@@ -148,7 +151,7 @@ function Tasks() {
                   {tasks
                     .filter((t) => t.status !== 'completed')
                     .map((task) => (
-                      <TaskCard key={task._id} task={task} onComplete={handleComplete} onDelete={handleDelete} />
+                      <TaskCard key={task._id} task={task} onComplete={handleComplete} onDelete={setTaskToDelete} />
                     ))}
 
                   {pendingCount === 0 ? (
@@ -164,7 +167,7 @@ function Tasks() {
                   {tasks
                     .filter((t) => t.status === 'completed')
                     .map((task) => (
-                      <TaskCard key={task._id} task={task} onComplete={handleComplete} onDelete={handleDelete} />
+                      <TaskCard key={task._id} task={task} onComplete={handleComplete} onDelete={setTaskToDelete} />
                     ))}
 
                   {completedCount === 0 ? (
@@ -181,7 +184,7 @@ function Tasks() {
 
               <div className="mt-3 space-y-3">
                 {visible.map((task) => (
-                  <TaskCard key={task._id} task={task} onComplete={handleComplete} onDelete={handleDelete} />
+                  <TaskCard key={task._id} task={task} onComplete={handleComplete} onDelete={setTaskToDelete} />
                 ))}
 
                 {visible.length === 0 ? (
@@ -193,6 +196,16 @@ function Tasks() {
         </div>
       )}
 
+
+        <ConfirmDialog
+          isOpen={Boolean(taskToDelete)}
+          onClose={() => setTaskToDelete(null)}
+          title="Delete Task"
+          message="Are you sure you want to delete this task?"
+          confirmText="Delete"
+          confirmVariant="danger"
+          onConfirm={() => handleDelete(taskToDelete)}
+        />
       <AddTaskModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onSuccess={handleCreateSuccess} />
     </div>
   )

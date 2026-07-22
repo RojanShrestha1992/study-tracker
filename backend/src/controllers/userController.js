@@ -40,6 +40,44 @@ export async function getMe(req, res, next) {
   }
 }
 
+export async function updateUsername(req, res, next) {
+  try {
+    const { username } = req.body
+    const trimmedUsername = typeof username === 'string' ? username.trim() : ''
+
+    if (!trimmedUsername) {
+      return res.status(400).json({ message: 'Username is required' })
+    }
+
+    if (!/^[A-Za-z0-9_]{3,20}$/.test(trimmedUsername)) {
+      return res.status(400).json({ message: 'Username must be 3-20 characters and contain only letters, numbers, and underscores' })
+    }
+
+    const existingUser = await User.findOne({
+      name: new RegExp(`^${trimmedUsername}$`, 'i'),
+      _id: { $ne: req.user._id },
+    })
+
+    if (existingUser) {
+      return res.status(400).json({ message: 'Username already taken' })
+    }
+
+    const user = await User.findById(req.user._id)
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' })
+    }
+
+    user.name = trimmedUsername
+    await user.save()
+
+    const payload = buildLevelPayload(user)
+    res.json({ success: true, user: payload })
+  } catch (error) {
+    next(error)
+  }
+}
+
 export async function updateSettings(req, res, next) {
   try {
     const { workDuration, shortBreak, longBreak, sessionsBeforeLongBreak } = req.body
@@ -80,6 +118,24 @@ export async function updateAvatar(req, res, next) {
     await user.save()
 
     res.json({ message: 'Avatar updated', avatar })
+  } catch (error) {
+    next(error)
+  }
+}
+
+export async function deleteAccount(req, res, next) {
+  try {
+    const userId = req.user._id
+
+    await Promise.all([
+      Subject.deleteMany({ userId }),
+      Task.deleteMany({ userId }),
+      StudySession.deleteMany({ userId }),
+      UserBadge.deleteMany({ userId }),
+      User.findByIdAndDelete(userId),
+    ])
+
+    res.json({ success: true, message: 'Account deleted successfully' })
   } catch (error) {
     next(error)
   }

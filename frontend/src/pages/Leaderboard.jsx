@@ -5,6 +5,7 @@ import EmptyState from '../components/ui/EmptyState.jsx'
 import Button from '../components/ui/Button.jsx'
 import LeaderboardRow from '../components/leaderboard/LeaderboardRow.jsx'
 import { getAvatar } from '../utils/avatars.js'
+import { SkeletonGroup } from '../components/ui/SkeletonLoader.jsx'
 
 const PAGE_SIZE = 20
 
@@ -106,8 +107,16 @@ function Leaderboard() {
       </header>
 
       {loading ? (
-        <div className="rounded-3xl border border-sand bg-surface p-10 text-center text-warmgray shadow-warm">
-          Loading leaderboard...
+        <div className="space-y-6">
+          <SkeletonGroup count={1} variant="card" className="h-28 rounded-3xl" />
+          <div className="rounded-3xl border border-sand bg-surface p-6 shadow-warm">
+            <div className="grid gap-4 md:grid-cols-3">
+              <SkeletonGroup count={3} variant="card" className="h-44" />
+            </div>
+          </div>
+          <div className="space-y-2 rounded-3xl border border-sand bg-surface p-6 shadow-warm">
+            <SkeletonGroup count={10} variant="list-item" />
+          </div>
         </div>
       ) : (
         <>

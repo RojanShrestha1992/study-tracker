@@ -4,12 +4,15 @@ import SubjectCard from '../components/subjects/SubjectCard.jsx'
 import SubjectModal from '../components/subjects/SubjectModal.jsx'
 import api from '../utils/api.js'
 import useToastStore from '../stores/toastStore.js'
+import ConfirmDialog from '../components/ui/ConfirmDialog.jsx'
+import { SkeletonGroup } from '../components/ui/SkeletonLoader.jsx'
 
 function Subjects() {
   const [subjects, setSubjects] = useState([])
   const [loading, setLoading] = useState(true)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [editingSubject, setEditingSubject] = useState(null)
+  const [subjectToDelete, setSubjectToDelete] = useState(null)
   const addToast = useToastStore((state) => state.addToast)
 
   const fetchSubjects = async () => {
@@ -32,6 +35,7 @@ function Subjects() {
     try {
       await api.delete(`/api/subjects/${id}`)
       addToast('Subject deleted', 'info')
+      setSubjectToDelete(null)
       fetchSubjects()
     } catch (error) {
       addToast(error.response?.data?.message || 'Unable to delete subject', 'error')
@@ -51,7 +55,9 @@ function Subjects() {
       </div>
 
       {loading ? (
-        <div className="rounded-3xl border border-sand bg-surface p-10 text-center text-warmgray shadow-warm">Loading subjects...</div>
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <SkeletonGroup count={6} variant="card" className="h-44 rounded-3xl" />
+        </div>
       ) : subjects.length === 0 ? (
         <div className="rounded-3xl border border-sand bg-surface p-10 text-center shadow-warm">
           <div className="mb-4 text-6xl">📚</div>
@@ -64,12 +70,22 @@ function Subjects() {
       ) : (
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {subjects.map((subject) => (
-            <SubjectCard key={subject._id} subject={subject} onEdit={(item) => { setEditingSubject(item); setIsModalOpen(true) }} onDelete={handleDelete} />
+            <SubjectCard key={subject._id} subject={subject} onEdit={(item) => { setEditingSubject(item); setIsModalOpen(true) }} onDelete={setSubjectToDelete} />
           ))}
         </div>
       )}
 
       <SubjectModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} subject={editingSubject} onSuccess={fetchSubjects} />
+
+      <ConfirmDialog
+        isOpen={Boolean(subjectToDelete)}
+        onClose={() => setSubjectToDelete(null)}
+        title="Delete Subject"
+        message="Are you sure? This will also delete all related sessions and tasks."
+        confirmText="Delete"
+        confirmVariant="danger"
+        onConfirm={() => handleDelete(subjectToDelete)}
+      />
     </div>
   )
 }

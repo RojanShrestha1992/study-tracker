@@ -3,13 +3,14 @@ import LandingPage from './pages/LandingPage.jsx'
 import LoginPage from './pages/LoginPage.jsx'
 import RegisterPage from './pages/RegisterPage.jsx'
 import DashboardLayout from './components/layout/DashboardLayout.jsx'
-import PlaceholderPage from './components/PlaceholderPage.jsx'
 import Achievements from './pages/Achievements.jsx'
 import Leaderboard from './pages/Leaderboard.jsx'
 import Subjects from './pages/Subjects.jsx'
 import PomodoroTimer from './pages/PomodoroTimer.jsx'
 import Dashboard from './pages/Dashboard.jsx'
 import Tasks from './pages/Tasks.jsx'
+import Profile from './pages/Profile.jsx'
+import Settings from './pages/Settings.jsx'
 
 function isAuthenticated() {
   return Boolean(localStorage.getItem('token'))
@@ -45,8 +46,8 @@ function App() {
           <Route path="subjects" element={<Subjects />} />
           <Route path="achievements" element={<Achievements />} />
           <Route path="leaderboard" element={<Leaderboard />} />
-          <Route path="profile" element={<PlaceholderPage title="Profile" icon="👤" />} />
-          <Route path="settings" element={<PlaceholderPage title="Settings" icon="⚙️" />} />
+          <Route path="profile" element={<Profile />} />
+          <Route path="settings" element={<Settings />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/" replace />} />
